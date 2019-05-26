@@ -289,7 +289,14 @@ void SerialExecute()
 			String messageBuffer1 = inputString.substring(0, 4);
 			if (messageBuffer1 == "M701")
 			{
-				COMMAND_PORT.println(GetPosition());
+				String position = String("P") + String(GetPosition());
+				COMMAND_PORT.println(position);
+			}
+			String messageBuffer2 = inputString.substring(0, 6);
+			if(messageBuffer2 == "M140 S")
+			{
+				DesiredSpeed = inputString.substring(6).toFloat();
+				COMMAND_PORT.println("Ok");
 			}
 		}
 	}
